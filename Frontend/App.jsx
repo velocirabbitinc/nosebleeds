@@ -8,7 +8,7 @@ class App extends Component {
     fetch("/post", {
       method: 'POST',
       body: JSON.stringify(
-      {username : "Daniel", 
+      {username : "Daniel12", 
       password: "codesmith"}),
       headers: {
           'Content-Type': 'application/json',
