@@ -2,8 +2,8 @@ const path = require('path');
 
 
 module.exports = {
-  mode: 'production',
-  entry: './frontend/index.html',
+  mode: process.env.NODE_ENV, 
+  entry: './frontend/index.js',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'build'),
@@ -19,23 +19,23 @@ module.exports = {
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react']
         }
-    }
-  },
+      }
+    },
     {
       test: /\.s[ac]ss$/i,
       use: ['style-loader', 'css-loader', 'sass-loader']
     }
-  ]
+    ]
   },
   devServer: {
-		hot: true,
-		port: 8080,
+    //hot: true,
+    port: 8080,
     static: {
       directory: path.join(__dirname, '/'),
       publicPath: '/',
     },
-		proxy: {
-			'/api/**': {
+    proxy: {
+      '/post': {
         target: 'http://localhost:3000/'
 		  },
 	  }
