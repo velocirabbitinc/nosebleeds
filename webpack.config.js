@@ -28,14 +28,14 @@ module.exports = {
     ]
   },
   devServer: {
-    hot: true,
+    //hot: true,
     port: 8080,
     static: {
       directory: path.join(__dirname, '/'),
       publicPath: '/',
     },
     proxy: {
-      '/api/**': {
+      '/post': {
         target: 'http://localhost:3000/'
 		  },
 	  }

@@ -1,15 +1,18 @@
-const User = require('..models/userModel.js');
+const User = require('../models/userModel.js');
 
-const userController = {}
+const userController = {};
 
 // CREATE USER MIDDLEWARE - for creating a new user
 userController.createUser = async (req, res, next) => {
   try {
+    console.log('this is the body', req.body);
     const newUser = await User.create(req.body);
+    console.log(newUser);
     res.locals.userId = newUser._id;
     return next();
   } catch (err) {
-    return res.render('./../frontend/index.js', {'error when signing up, please try again': err});
+    console.log('error when signing up, please try again');
+    return next({ error: err });
   }
 };
 
