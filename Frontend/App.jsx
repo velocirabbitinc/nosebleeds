@@ -1,1 +1,46 @@
-//this is our log in page
+// Login page
+// import React from 'react';
+import React, { Component } from 'react';
+//import ReactDOM from 'react-dom';
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state =  {
+      username: '',
+      password: ''
+    }
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleUsernameChange(event) {
+    this.setState({username: event.target.value});
+  }
+  handlePasswordChange(event) {
+    this.setState({password: event.target.value})
+  }
+
+  // handleSubmit(event) {
+
+  // }
+  
+  render() {
+    return (
+     
+      <div>
+        <form>
+          <input id="username" placeholder="username" value={this.state.username} onChange={this.handleUsernameChange}></input>
+          <input id="password" placeholder="password" value={this.state.password} onChange={this.handlePasswordChange}></input>
+          
+        </form>
+        <button>Login</button>
+        <button>Sign up</button>
+      </div>
+    )
+  }
+}
+
+
+
+export default App;

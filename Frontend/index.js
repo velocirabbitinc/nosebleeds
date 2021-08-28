@@ -1,7 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import App from './App.jsx';
-import styles from './styles/styles.scss';
+//import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-render(<App />, document.getElementById('root'));
+//import styles from './styles/styles.scss';
+
+
+ReactDOM.render(<App />, document.getElementById('root'));
 //registerServiceWorker();
