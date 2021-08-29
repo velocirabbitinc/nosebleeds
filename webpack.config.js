@@ -2,7 +2,7 @@ const path = require('path');
 
 
 module.exports = {
-  mode: process.env.NODE_ENV, 
+  mode: process.env.NODE_ENV,
   entry: './frontend/index.js',
   output: {
     filename: 'bundle.js',

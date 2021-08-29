@@ -1,9 +1,26 @@
+// Login page
+// import React from 'react';
 import React, { Component } from 'react';
-
+//import ReactDOM from 'react-dom';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state =  {
+      username: '',
+      password: ''
+    }
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleUsernameChange(event) {
+    this.setState({username: event.target.value});
+  }
+  handlePasswordChange(event) {
+    this.setState({password: event.target.value})
+  }
+
   getUsers = () => { 
     fetch("/post", {
       method: 'POST',
@@ -18,16 +35,24 @@ class App extends Component {
   .then(result => {result}
   )};
 
+
+  
   render() {
-    return(
-        <div >
-            <button onClick={this.getUsers}> click me!</button>
-            <strong>Hello</strong>
-      
+    return (
+     
+      <div>
+        <form>
+          <input id="username" placeholder="username" value={this.state.username} onChange={this.handleUsernameChange}></input>
+          <input id="password" placeholder="password" value={this.state.password} onChange={this.handlePasswordChange}></input>
+          
+        </form>
+        <button>Login</button>
+        <button>Sign up</button>
       </div>
-    );
+    )
   }
 }
 
+
+
 export default App;
-//onLoad={this.getUsers()}
