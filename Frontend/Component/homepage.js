@@ -72,8 +72,8 @@ class HomePage extends Component {
     getData = (teamApi, reference) =>{fetch(teamApi)
     .then(response => response.json())
     .then(data =>  
-     {var today = new Date();
-      var date = today.getFullYear()+'-'+'0'+(today.getMonth()+1)+'-'+today.getDate();
+     {let today = new Date();
+      let date = today.getFullYear()+'-'+'0'+(today.getMonth()+1)+'-'+today.getDate();
       console.log(date);
       if(data.events[0].datetime_local.substring(0,10) === date) 
       if (reference ===0)
@@ -105,24 +105,24 @@ class HomePage extends Component {
                     <button className="lakerButton"  onClick="lowest price laker ticket">LAKERS</button>
                     <button className="clipperButton" onClick="lowest price clipper ticket">CLIPPERS</button>
                     <button className="ramButton" onClick="lowest price rams ticket">RAMS</button>
-                    <button className="dodgerButton" value={this.state.lowestDodgerPrice} onClick={(e)=> {
+                    <button className="dodgerButton" value={this.state.lowestDodgerPrice} val={this.state.DodgerUrl} onClick={(e)=> {
                         e.preventDefault();
                         this.filterData(0)
                         }}>DODGERS</button>
                     <button className="angelButton" value={this.state.lowestAngelPrice} onClick={(e)=> {
                         e.preventDefault();
                         this.filterData(3)
+                        
                         }}>ANGELS</button>
                     <button className="lafcButton" onClick="lowest price lafc ticket')">LAFC</button>
                     <button className="galaxyButton" onClick="lowest price galaxy ticket')">GALAXY</button>
                     <button className="chargersButton" onClick="lowest price chargers ticket')">CHARGERS</button>
                 </div>
-                <div>
-                    {this.state.lowestDodgerPrice}
-                    {this.state.DodgerUrl}
+                <div className="priceAndTicket">
+                <a color="white" href={this.state.DodgerUrl}>{this.state.lowestDodgerPrice}</a>
                 </div>
-                <div>{this.state.lowestAngelPrice}
-                {this.state.AngelUrl}
+                <div className="priceAndTicket">
+                <a href={this.state.AngelUrl}>{this.state.lowestAngelPrice}</a>
                 </div>
             </body>
             </div>

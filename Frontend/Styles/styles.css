@@ -21,6 +21,17 @@ body {
   justify-content: center;
 }
 
+a:link {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.priceAndTicket {
+  color: rgb(255, 255, 255);
+  background-color: black;
+}
+
 
 .primary {
     display: flex;
