@@ -47,14 +47,13 @@ const App = () => {
       <Router>
         
         <Route exact path="/" component={App}> 
-        
             <h1 className="primary">THE NOSEBLEEDS</h1>
-            <h3>Hello and welcome!</h3>
-            <input placeholder="username"></input>
-            <input placeholder="password"></input>
-            <Link to='/test'><button type="button" className="buttons">Login</button></Link>
-            <button type="button" className="buttons">Sign up</button>
-        
+            <div id='login'>
+              <input id='username' placeholder="username"></input>
+              <input id="password "placeholder="password"></input>
+              <Link to='/test'><button type="button" className="buttons">Login</button></Link>
+              <button type="button" className="buttons">Sign up</button>
+            </div>
         </Route>
         <Route path="/test" component={TestComp}>
             <TestComp />
