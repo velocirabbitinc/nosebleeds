@@ -33,8 +33,9 @@ app.post('/post', userController.createUser, (req, res) => {
 });
 
 app.post('/login', userController.verifyUser, (req, res) => {
-  res.status(200)
-  res.redirect('/homepage')
+
+  return res.json('yes');
+
 });
 
 // 404 Handler
