@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 
-class TestComp extends Component {
+class HomePage extends Component {
     constructor () {
         super()
         this.state = {
-
+            lowestDodgerPrice: '',
+            lowestAngelPrice: '',
+            lowestLafcPrice: '',
+            lowestGalaxyPrice: '',
+            lowestLakerTicket: '',
+            lowestChargerTicket: '',
+            lowestClipperTicket: '',
+            lowestRamTicket: ''
         }
     }
-
+    // .stats.lowest_price_good_deals
+    // .url
     getData = () =>{fetch('https://api.seatgeek.com/2/events?client_id=MjMwODQ2OTZ8MTYzMDA5MTEwMy4xMjAzNg&geoip=true&performers.slug=los-angeles-dodgers')
     .then(response => response.json())
     .then(data =>  
@@ -64,4 +72,4 @@ class TestComp extends Component {
     }
 }
 
-export default TestComp
+export default HomePage;
