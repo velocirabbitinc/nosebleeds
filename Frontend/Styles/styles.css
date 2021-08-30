@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(180, 180, 180)
+    background-color:  #083C6B;
 }
 
 .buttons {
@@ -17,19 +17,19 @@ body {
 }
 
 .primary {
-    color: rgb(93, 211, 166);
-    background-color:rgb(99, 99, 99)
+    color: #1e90ff;
+    background-color: rgb(99, 99, 99);
 }
 
 #profile {
-    border: 3px groove rgb(0, 129, 75);
-    background-color:rgb(28, 109, 78);
+    border: 3px groove #1e90ff;
+    background-color:#1e90ff;
     background-size: 400px;
 
 }
 
 .search {
-    border: 0.5rem solid rgb(28, 109, 78);
+    border: 0.5rem solid rgb(95, 95, 95);
     margin: 0;
     border-radius: 10px;
     width: 282px;
@@ -42,24 +42,24 @@ body {
 }
 
 #searchButton {
-    color:black;
-    background-color: rgb(28, 109, 78);
-    border: solid rgb(28, 109, 78);
+    color:#1e90ff;
+    background-color: rgb(71, 71, 71);
+    border: solid rgb(46, 46, 46);
 }
 
 /* Style the tab */
 .tab {
   overflow: hidden;
   border: 3px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #d1d1d1;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-  color: rgb(0, 0, 0);
+  color: #1e90ff;
   background-color: inherit;
   float: left;
-  border: 4px solid #f1f1f1;
+  border: 4px solid #ffffff;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -68,14 +68,14 @@ body {
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  color: rgb(0, 0, 0);
-  background-color: rgb(158, 127, 175);
-  border: 4px ridge rgb(28, 99, 109);
+  color: #1e90ff;
+  background-color: rgb(131, 131, 131);
+  border: 4px solid rgb(131, 131, 131);
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: rgb(158, 127, 175);
+  background-color: rgb(109, 28, 28);
 }
 
 /* Style the tab content */
