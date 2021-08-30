@@ -21,15 +21,15 @@ body {
   justify-content: center;
 }
 
-a:link {
+.priceLink {
   color: rgb(255, 255, 255);
   background-color: transparent;
   text-decoration: none;
+  font-size: 100px;
 }
 
 .priceAndTicket {
-  color: rgb(255, 255, 255);
-  background-color: black;
+  color: rgb(255, 0, 0);
 }
 
 
