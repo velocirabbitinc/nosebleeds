@@ -19,23 +19,24 @@ module.exports = {
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react']
         }
-    }
-  },
+      }
+    },
     {
-      test: /\.s[ac]ss$/i,
+      test: /\.css$/i,
+      //test: /\.s[ac]ss$/i,
       use: ['style-loader', 'css-loader', 'sass-loader']
     }
-  ]
+    ]
   },
   devServer: {
-		hot: true,
-		port: 8080,
+    //hot: true,
+    port: 8080,
     static: {
       directory: path.join(__dirname, '/'),
       publicPath: '/',
     },
-		proxy: {
-			'/api/**': {
+    proxy: {
+      '/post': {
         target: 'http://localhost:3000/'
 		  },
 	  }
