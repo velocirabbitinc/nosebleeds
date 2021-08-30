@@ -17,10 +17,10 @@ userController.createUser = async (req, res, next) => {
 
 // VERIFY USER MIDDLEWARE - for login purposes
 userController.verifyUser = async (req, res, next) => {
-  //try {
+  try {
     const existingUser = await User.findOne({username: req.body.username}).exec()
     res.locals.userId = existingUser._id;
-    console.log('hello');
+    console.log(existingUser);
     // compare password to database
     bcrypt.compare(req.body.password, existingUser.password, function(err, result) {
       if (result) {
@@ -32,6 +32,12 @@ userController.verifyUser = async (req, res, next) => {
       }
     })
 
+    } catch (err) {
+      console.log('cannot find user');
+    }
+  };
+    
+
     // if (existingUser.password === req.body.password) {
       // return next();
     // } else {
@@ -40,7 +46,7 @@ userController.verifyUser = async (req, res, next) => {
   // } catch (err) {
     // return res.render('/', {error: err});
   //}
-}
+
 
 // export
 module.exports = userController;

@@ -42,6 +42,9 @@ module.exports = {
       '/login': {
         target: 'http://localhost:3000/'
 		  },
+      '/homepage': {
+        target: 'http://localhost:3000/'
+      },
 	  }
   },
 }
