@@ -21,7 +21,7 @@
 //     this.setState({password: event.target.value})
 //   }
 
-//   getUsers = () => { 
+//    Signup = () => { 
 //     fetch("/post", {
 //       method: 'POST',
 //       body: JSON.stringify(
@@ -47,7 +47,7 @@
           
 //         </form>
 //         <button>Login</button>
-//         <button>Sign up</button>
+//         <button onClick={() => this.Signup(document.getElementById(username)document.getElementById(username),>Sign up</button>
 //       </div>
 //     )
 //   }
