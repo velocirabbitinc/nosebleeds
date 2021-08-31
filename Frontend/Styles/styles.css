@@ -28,6 +28,10 @@ body {
   font-size: 100px;
 }
 
+.priceLink:hover {
+  color: yellow;
+}
+
 .priceAndTicket {
   color: rgb(255, 0, 0);
 }

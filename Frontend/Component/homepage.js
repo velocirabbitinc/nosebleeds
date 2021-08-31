@@ -77,9 +77,9 @@ class HomePage extends Component {
       console.log(date);
       if(data.events[0].datetime_local.substring(0,10) === date) 
       if (reference ===0)
-     { this.setState({lowestDodgerPrice: "$" + data.events[0].stats.lowest_sg_base_price + " lowest Dodger ticket price", DodgerUrl: data.events[0].url }) }
+     { this.setState({lowestDodgerPrice: "$" + data.events[0].stats.lowest_sg_base_price + " lowest Dodgers ticket price", DodgerUrl: data.events[0].url }) }
      else if (reference === 3)
-     { this.setState({lowestAngelPrice: "$" + data.events[0].stats.lowest_sg_base_price + " lowest Angel ticket price", AngelUrl: data.events[0].url}) }
+     { this.setState({lowestAngelPrice: "$" + data.events[0].stats.lowest_sg_base_price + " lowest Angels ticket price", AngelUrl: data.events[0].url}) }
 
          console.log(data.events[0].stats.lowest_sg_base_price, console.log(data.events[0].url))})};
 
