@@ -45,27 +45,6 @@ class HomePage extends Component {
                     <button className="tablinks" onClick="lowest price galaxy ticket')">GALAXY</button>
                     <button className="tablinks" onClick="lowest price chargers ticket')">CHARGERS</button>
                 </div>
-
-
-                <div id="Action" class="tabcontent">
-                    <h3>Action</h3>
-                    <p>Action movies</p>
-                </div>
-
-                <div id="Comedy" class="tabcontent">
-                    <h3>Comedy</h3>
-                    <p>Comedy movies</p>
-                </div>
-
-                <div id="Horror" class="tabcontent">
-                    <h3>Horror</h3>
-                    <p>Horror movies</p>
-                </div>
-
-                <div id="Drama" class="tabcontent">
-                    <h3>Drama</h3>
-                    <p>Drama movies</p>
-                </div>
             </body>
             </div>
         )
