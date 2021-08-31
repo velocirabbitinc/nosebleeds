@@ -15,10 +15,15 @@ import { useHistory,
         BrowserRouter as Router,
         Link,
         Route,
+        Switch
     } from 'react-router-dom';
 
 import HomePage from './component/homepage';
 import './styles/styles.css'
+
+let validUser = true;
+//let linkTo = '/';
+
 
 const App = () => {
   const signUp = (user, pass) => { 
@@ -48,7 +53,15 @@ const App = () => {
               }
             })
               .then(res => res.json())
-              .then(result => console.log(user))
+              .then(result => {
+                if (result) {
+                  //linkTo = '/homepage';
+                  return validUser = true;
+                } else {
+                  return validUser = false;
+                }
+                console.log(result)
+              })
         };
             
   const getData = () =>{fetch('https://api.seatgeek.com/2/events?client_id=MjMwODQ2OTZ8MTYzMDA5MTEwMy4xMjAzNg&geoip=true&performers.slug=los-angeles-dodgers')
@@ -57,27 +70,38 @@ const App = () => {
   
 //   const usernameTest = document.getElementById('username').value
 //   console.log(usernameTest);
- 
+// console.log('here')
+// if (validUser === true) {
+//   console.log('on line 71')
+//   linkTo = '/homepage';
+// } else {
+//   linkTo = '/';
+// }
+validUser = Login()
+console.log()
   return(
-      
-      
-      <Router>
-        
-        <Route exact path="/" component={App}> 
-            <h1 className="primary">THE NOSEBLEEDS</h1>
-            <div id='login'>
-             <input type ='text' id='username' placeholder="username"></input>
-            <input type = 'text' id="password" placeholder="password"></input>
-              <button onClick={() => Login((document.getElementById('username').value), (document.getElementById('password').value))} type="button" className="buttons" type="button" className="buttons">Login</button>
-              <button onClick={() => signUp((document.getElementById('username').value), (document.getElementById('password').value))} type="button" className="buttons">Sign up</button>
-            </div>
-        </Route>
-        <Route path="/homepage" component={HomePage}>
-            <HomePage />
-        </Route>
-        
-        </Router>
-    )
+    // console.log(linkTo)
+    <Router>
+      <Switch>
+      <Route exact path="/" component={App}> 
+          <h1 className="primary">THE NOSEBLEEDS</h1>
+          <div id='login'>
+           <input type ='text' id='username' placeholder="username"></input>
+          <input type = 'password' id="password" placeholder="password"></input>
+            <Link to='/homepage'><button onClick={() => Login((document.getElementById('username').value), (document.getElementById('password').value))} type="button" className="buttons">Login</button></Link>
+            <button onClick={() => signUp((document.getElementById('username').value), (document.getElementById('password').value))} type="button" className="buttons">Sign up</button>
+          </div>
+      </Route>
+      <Route path='/homepage' component={HomePage}>
+          <HomePage />
+      </Route>
+      </Switch>
+      </Router>
+  )
+//       return (
+//         <button onClick {/*some logic returns boolean*/}></button>
+//         if (/*logic returns true*)
+//       )
 }
 
 ReactDOM.render(<App />, document.getElementById("root"))

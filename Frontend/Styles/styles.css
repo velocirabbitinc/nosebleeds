@@ -21,6 +21,21 @@ body {
   justify-content: center;
 }
 
+.priceLink {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+  font-size: 100px;
+}
+
+.priceLink:hover {
+  color: yellow;
+}
+
+.priceAndTicket {
+  color: rgb(255, 0, 0);
+}
+
 
 .primary {
     display: flex;
