@@ -1,6 +1,27 @@
-const User = require('../models/userModel.js');
+const User = require('./userModel.js');
 const bcrypt = require('bcryptjs');
 const userController = {};
+
+//this controller may or may not be used 
+//from the previous scracth project
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // CREATE USER MIDDLEWARE - for creating a new user
 userController.createUser = async (req, res, next) => {
