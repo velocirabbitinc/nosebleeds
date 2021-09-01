@@ -1,50 +1,38 @@
 const express = require('express');
-const path = require('path');
 const app = express();
-const mongoose = require('mongoose');
+const path = require('path');
 const PORT = 3000;
-const userController = require('./Controllers/userController.js')
-const mongoURI = ('mongodb+srv://Daniel:codesmith@cluster0.mm1df.mongodb.net/Cluster0?retryWrites=true&w=majority')
-mongoose.connect(mongoURI)
-app.use(express.static(path.join(__dirname, 'build')))
-app.use(express.urlencoded({ extended: true }));
+const cookieParser = require('cookie-parser');
+const fetch = require('node-fetch');
+const apiRouter = require('./routes/apiRouter.js');
+require('dotenv').config();
+
+// handle parsing body and url
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// MAIN GET REQUEST TO INDEX
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'))
-});
+// routers
 
-//GET REQUEST FOR TEST PAGE
-// app.get('/homepage', (req, res) => {
-//   console.log('hello');
-//   res.sendFile(path.join(__dirname, '../frontend/components/homepage.js'))
-//   //res.render('../frontend/components/homepage.js')
-// });
+app.use('/api/', apiRouter);
 
-app.post('/post', userController.createUser, (req, res) => {
-  console.log('jake paul wins')
-  res.status(200)
-  res.redirect('/Frontend/Component/homepage.js')
-});
+// serve static pages
+app.use(express.static(path.resolve(__dirname, '../client')));
 
-app.post('/login', userController.verifyUser, (req, res) => {
+// 404 handler
+app.use((req, res) => res.status(200).send('Error 404: Page not found (what did u do smh)'));
 
-  return res.json('yes');
 
-});
 
-// 404 Handler
-app.use('*', (req, res) => {
-  res.status(404).send('Not Found');
-});
-
-// Global Error Handler
+// global error handler
 app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).send('Internal Server Error');
-});
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign(defaultErr, err);
+  return res.status(errorObj.status).send(errorObj.message.err)
+})
 
-
-
-app.listen(PORT, () => { console.log(`Listening on port ${PORT}...`); });
+//begin listening on port
+app.listen(PORT, () => console.log('Listening on port:', PORT));
