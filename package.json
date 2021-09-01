@@ -6,13 +6,18 @@
   "scripts": {
     "start": "NODE_ENV=production node server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "concurrently \"NODE_ENV=development cross-env  webpack-dev-server ./\" \"NODE_ENV=development nodemon ./server/server.js\""
+    "dev": "concurrently \"NODE_ENV=development cross-env  webpack-dev-server ./\" \"NODE_ENV=development nodemon ./server/server.js\"",
+    "test": "jest --verbose false"
   },
   "nodemonConfig": {
     "ignore": [
       "build",
       "client"
     ]
+  },
+  "jest": {
+    "globalSetup": "./jest-setup.js",
+    "globalTeardown": "./jest-teardown.js"
   },
   "author": "Andy Tsou, Jordan Hisel, Lina Shin, Kristine Aguda",
   "license": "",
