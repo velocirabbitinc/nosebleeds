@@ -1,139 +1,94 @@
  import * as types from '../constants/actionTypes';
+ import * as constants from '../constants/constants';
 
  const initialState = {
-   username: 'derp',
-   userID:'derp',
-   totalCardsAnswered: 0,
-   answeredRight: 0,
-   answeredWrong: 0,
-   answeredCardList:[],
-   flashCardList:[],
-   createdUserCards:[],
-   chosenTopics:[],
-   answerShown :false,
-   session: false,
-   createCard: false
+   view: constants.LOGIN,
+   username: '',
+   password: '',
+   searchBar: '',
+   userID: '',
+   favsList: [], // array of objects containing name, image, ID(?)
+   eventList: [] // array of objects containing info including name, image, location, url, ID(?)
  };
   
- const flashCodesReducer = (state = initialState, action) => {
+ const geekReducer = (state = initialState, action) => {
    switch (action.type) {
-   //increment by 1 to the total and the answered correctly property
-   case types.ANSWERED_CORRECTLY: {      
-     const newAnsweredCardList  = JSON.parse(JSON.stringify(state.answeredCardList))
-     const newflashCardList = JSON.parse(JSON.stringify(state.flashCardList)) 
-     // remove first index from flashCardList push it to the answeredCardList to record it  
-     newAnsweredCardList.push(newflashCardList.shift())
-     const newTotalCardsAnswered = state.totalCardsAnswered
-     const newAnsweredRight = state.answeredRight
-     const newAnswerShown = false
-     return {...state,
-       totalCardsAnswered: newTotalCardsAnswered + 1,
-       answeredRight: newAnsweredRight + 1,
-       answeredCardList: newAnsweredCardList,
-       flashCardList: newflashCardList,
-       answerShown: newAnswerShown
-     }
-   } 
- 
-   //increment by 1 to the total and the answered incorrectly property
-   case types.ANSWERED_INCORRECTLY: {      
-     const newAnsweredCardList  = JSON.parse(JSON.stringify(state.answeredCardList))
-     const newflashCardList = JSON.parse(JSON.stringify(state.flashCardList))  
-     // remove first index from flashCardList push it to the answeredCardList to record it  
-     newAnsweredCardList.push(newflashCardList.shift())
- 
-     const newTotalCardsAnswered = state.totalCardsAnswered
-     const newAnsweredWrong = state.answeredWrong
-     const newAnswerShown = false
-     return {...state,
-       totalCardsAnswered: newTotalCardsAnswered + 1,
-       answeredWrong: newAnsweredWrong + 1,
-       AnsweredCardList:newAnsweredCardList,
-       flashCardList: newflashCardList,
-       answerShown: newAnswerShown
-     }
-   }
- 
-   //add user created card from the data returned from the post request to the DB
-   case types.ADD_CREATED_USER_CARD: {        
-     const newCreatedUserCards = JSON.parse(JSON.stringify(state.createdUserCards))
-     newCreatedUserCards.push(action.payload)
-     const newCreateCard = false
-     return {
-       ...state,
-       createdUserCards: newCreatedUserCards,
-       createCard : newCreateCard
-     }
-   }
- 
-      
-   //add flashcards queried from the data base
-   case types.ADD_FLASH_CARD_LIST: {        
-     const newFlashCards = action.payload
-     const newSession = true
-     return {...state,
-       flashCardList: newFlashCards,
-       session: newSession
-     }
-   }
- 
-      
-   //add a topic to the chosen topics array
-   case types.ADD_TO_TOPICS_LIST: {       
-     let newChosenTopics = JSON.parse(JSON.stringify(state.chosenTopics))
-     if(action.payload === 'all'){
-       newChosenTopics = []
-     }else{
-       newChosenTopics.push(action.payload)
-     }
-     return {...state,
-       chosenTopics: newChosenTopics
-     }
-   }
- 
- 
-   case types.REMOVE_ONE_TOPICS_LIST:  {
-     let newChosenTopics = JSON.parse(JSON.stringify(state.chosenTopics))
-     newChosenTopics = newChosenTopics.filter((e) => e !== action.payload)
-     return {...state,
-       chosenTopics: newChosenTopics
-     }
-   }
- 
-   case types.REVEAL_ANSWER: {
-     const newAnswerShown = true
-     return {...state,
-       answerShown: newAnswerShown
-     }
-   }
-   case types.CREATE_CARD: {
-     const newCreateCard = true
-     return {...state,
-       createCard: newCreateCard
-     }
-   }
-   case types.LOGIN: {
-     const newUserID = action.payload.userID
-     const newUsername = action.payload.username
-     return {...state,
-       userID: newUserID,
-       username: newUsername
-     }
-   }
- 
-   case types.RESET_SESSION: {
-     const newSession = false
-     return {...state,
-       session: newSession
-     }
-   }
- 
+    case types.SIGN_UP_USER: {
+      const userID = action.payload.userID;
+      return {...state,
+        view: constants.HOMEPAGE_EVENTS,
+        userID,
+        username: '',
+        password: '',
+      }
+    } 
+
+    case types.LOGIN: {
+      const userID = action.payload.userID;
+      const favsList = action.payload.favsList;
+      const eventList = action.payload.eventList;
+      return {...state,
+        view: constants.HOMEPAGE_EVENTS,
+        userID,
+        favsList,
+        eventList
+      }
+    }
   
-   default:
-     return state; 
-       
-   }
+    case types.LOG_OUT: {        
+      return {
+        ...initialState,
+      }
+    }
+  
+    case types.ADD_FAV: {        
+      const favsList = action.payload.favsList;
+      const eventList = JSON.parse(JSON.stringify(state.eventList)).concat(action.payload.eventList)
+      return {...state,
+        favsList,
+        eventList
+      }
+    }
+ 
+    case types.BUY_TIX: {       
+      // idk how to redirect lol :D
+      return {...state,
+        chosenTopics: newChosenTopics
+      }
+    }
+    
+    case types.HANDLE_CHANGE: {
+      const label = action.payload.label;
+      const value = action.payload.value;
+      return {...state,
+        [label]: value
+      }
+    }
+  
+    case types.SIGN_UP_FORM:  {
+      return {...state,
+        view: constants.SIGN_UP,
+        username: '',
+        password: ''
+      }
+    }
+  
+    case types.SHOW_FAVS: {
+      return {...state,
+        view: constants.HOMEPAGE_FAVS
+      }
+    }
+
+    case types.RETURN_HOME: {
+      return {...state,
+        view: constants.HOMEPAGE_EVENTS
+      }
+    }
+  
+    default:
+      return state;    
+    }
  };
   
- export default flashCodesReducer;
+ export default geekReducer;
   
