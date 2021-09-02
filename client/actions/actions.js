@@ -53,12 +53,10 @@ export const LOG_OUT = () => (dispatch, getState) => {
 
 export const ADD_FAV = () => (dispatch, getState) => {
   const userID = getState().geek.userID;
-  const newFav = getState().geek.searchbar;
+  const newFav = getState().geek.searchBar;
   const favsList = getState().geek.favsList.map( el => el.name)
-  
   if (!favsList.includes(newFav)) {
-
-    axios.post('API ENDPOINT PLACEHOLDER', {userID, newFav})
+    axios.post('/api/addTopics/', {userID, newFav})
       .then((res) => {
         if(res.status === 200){
           console.log('Fav added')

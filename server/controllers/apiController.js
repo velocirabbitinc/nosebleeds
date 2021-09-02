@@ -23,8 +23,11 @@ apiController.facebookLogin = async (req, res, next) => {
 
 apiController.addTopics = async (req, res, next) => {
     try {
-    const query = req.body.data.split(' ').join('-')
+      console.log(req.body.newFav)
+    const query = req.body.newFav.split(' ').join('-')
+    console.log('this is query', query)
     const data = await fetch(frontQueryPeformerSearch+query+endQuery)
+    console.log('this is data', data)
     const result = await data.json()
     res.locals.performerData = result
     const likedList = {
@@ -33,6 +36,7 @@ apiController.addTopics = async (req, res, next) => {
       image:result.performers[0].image,
       id:result.performers[0].id
     }
+    console.log(result)
     res.locals.performerData = likedList
 
     const update = {}
