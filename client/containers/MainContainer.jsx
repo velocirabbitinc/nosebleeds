@@ -12,7 +12,8 @@ const mapStateToProps = state => {
     view: state.geek.view,
     username: state.geek.username,
     password: state.geek.password,
-    searchBar: state.geek.searchBar
+    searchBar: state.geek.searchBar,
+    sort: state.geek.sort
   }
 }
 
@@ -24,6 +25,9 @@ const mapDispatchToProps = dispatch => ({
   addFav: () => dispatch(actions.ADD_FAV()),
   showFavs: () => dispatch(actions.SHOW_FAVS()),
   returnHome: () => dispatch(actions.RETURN_HOME()),
+  returnToLogin: () => dispatch(actions.RETURN_TO_LOGIN()),
+  logOut: () => dispatch(actions.LOG_OUT()),
+  sortButton: () => dispatch(actions.SORT())
 })
 
 class MainContainer extends Component {
@@ -42,6 +46,9 @@ class MainContainer extends Component {
               searchBar={this.props.searchBar}
               addFav={this.props.addFav}
               view={this.props.view}
+              logOut={this.props.logOut}
+              sort={this.props.sort}
+              sortButton={this.props.sortButton}
             />
             <DisplayContainer />
           </div>
@@ -69,6 +76,7 @@ class MainContainer extends Component {
               username={this.props.username}
               password={this.props.password}
               handleChange={this.props.handleChange}
+              returnToLogin={this.props.returnToLogin}
             />
           </div>
         );
