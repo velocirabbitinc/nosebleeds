@@ -5,9 +5,10 @@ const clientSecret = process.env.clientSecret
 const clientID = process.env.clientID
 const endQuery = `?client_id=${clientID}&client_secret=${clientSecret}`
 //organize by cheaptes and by near time for the date
-// post request to create user
-router.post('/addTopics/', apiController.addTopics,apiController.findEvents, (req, res) => {
-  return res.status(200).json({events: res.locals.eventData});
+// post request to create user apiController.addTopics,apiController.findEvents,
+router.post('/addTopics/', apiController.addTopics,apiController.findEvents,(req, res) => {
+  console.log(req.body)
+  return res.status(200).json({performerData:res.locals.performerData, events: res.locals.eventData});
 })
 // performerData:res.locals.performerData, 
 // post request to authenticate user
