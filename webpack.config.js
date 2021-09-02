@@ -19,7 +19,7 @@ module.exports = {
         hot: true,
         port: 8080,
         proxy: {
-          '/**/**': {
+          '/api/**': {
           target: 'http://localhost:3000/',
           secure: null,
           }
@@ -48,7 +48,11 @@ module.exports = {
             test: /.(css|scss)$/,
             exclude: /node_modules/,
             use: ['style-loader', 'css-loader', 'sass-loader'],
-        }
+        },
+        { 
+          test: /\.(png|svg|jpg|gif)$/, 
+          use: ['file-loader'] 
+        },
       ]
     },
     resolve: {

@@ -14,11 +14,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    logOut: () => dispatch(actions.LOG_OUT()),
-    buyTix: (url) => dispatch(actions.BUY_TIX(url))
-})
-
 class DisplayContainer extends Component {
     constructor(props) {
         super(props)
@@ -28,18 +23,21 @@ class DisplayContainer extends Component {
         if (this.props.view === constants.HOMEPAGE_EVENTS) {
             return (
                 <div>
-                    <MainDisplay eventList={this.props.eventList}/>
+                    <MainDisplay className="cardContainer"
+                        eventList={this.props.eventList}
+                    />
                 </div>
             )
         }
         if (this.props.view === constants.HOMEPAGE_FAVS) {
             return (
                 <div>
-                    <FavsDisplay favsList={this.props.favsList}/>
+                    <FavsDisplay className="cardContainer"
+                        favsList={this.props.favsList}/>
                 </div>
             )
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DisplayContainer);
+export default connect(mapStateToProps, null)(DisplayContainer);

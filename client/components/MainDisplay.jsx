@@ -3,13 +3,22 @@ import Event from './Event.jsx'
 
 const MainDisplay = props => {
   const newEventList = [];
-  // console.log(props.eventList);
   for (let i = 0; i < props.eventList.length; i += 1) {
-    newEventList.push(<Event url={props.eventList[i].url}/>)
+    const event = props.eventList[i];
+    newEventList.push(
+      <Event 
+        key={`${i}th event`}
+        name={event.title}
+        url={event.url}
+        date={event.dateTime}
+        price={event.price}
+        image={event.image}
+        buyTix={props.buyTix}
+      />)
   }
 
   return (
-    <div>
+    <div className="mainDisplay">
       {newEventList}
     </div>
   )

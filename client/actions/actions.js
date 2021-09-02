@@ -5,81 +5,80 @@ import * as types from '../constants/actionTypes';
 export const SIGN_UP_USER = () => (dispatch, getState) => {
   const username = getState().geek.username;
   const password = getState().geek.password;
-  axios.post('/user/createUser/', {username: username, password: password}) // location: navigator.geolocation()})
+  axios.post('/api/signup/', {username: username, password: password}) // location: navigator.geolocation()})
     .then((info) => {
       console.log(info.data)
-      if (info.status === 200 && info.data.data === true){
+      if (info.status === 200){
+        console.log('userID ',info.data.userID)
         dispatch({ 
           type: types.SIGN_UP_USER,
-          payload: {username: username, userID: info.data.userID}
+          payload: {userID: info.data.userID}
         });
       } 
     })
-    .catch( e => {alert("This username already exists. Please pick a different username")});
+    .catch( e => {alert("This username already exists. Please pick a different username.")});
 }
 
 export const LOGIN = () => (dispatch, getState) => {
-  dispatch({
-    type: types.LOGIN,
-    payload: {eventList: [], favsList: []}
-  })
-  // const username = getState().geek.username;
-  // const password = getState().geek.password;
-  // axios.post('/user/authUser/',{username: username, password: password})
-  //   .then((info) => {
-  //     console.log(info.data)
-  //     if (info.status === 200){
-  //       dispatch({ 
-  //         type: types.LOGIN,
-  //         payload: {username: username, userID: info.data.userID}
-  //       });
-  //     } 
-  //   })
-  //   .catch( e => {alert("Incorrect password. Please try again.")});
-};
-
-export const LOG_OUT = () => (dispatch, getState) => {
-  const userID = getState().geek.userID;
-  axios.post('API ENDPOINT PLACEHOLDER', {userID: userID}) 
-    .then(({status}) => {
-      if (status === 200){
-        dispatch({
-          type: types.LOG_OUT,
-        })
-      }
+  // dispatch({
+  //   type: types.LOGIN,
+  //   payload: {eventList: [], favsList: []}
+  // })
+  const username = getState().geek.username;
+  const password = getState().geek.password;
+  console.log('clickly click')
+  axios.post('/api/login/',{username: username, password: password})
+    .then((info) => {
+      console.log(info.data)
+      if (info.status === 200){
+        dispatch({ 
+          type: types.LOGIN,
+          payload: {userID: info.data.userID, eventList: info.data.eventList, favsList: info.data.favsList}
+        });
+      } 
     })
-    .catch(console.error)
+    .catch( e => {alert("Incorrect password. Please try again.")});
 };
 
 export const ADD_FAV = () => (dispatch, getState) => {
   const userID = getState().geek.userID;
   const newFav = getState().geek.searchBar;
-  const favsList = getState().geek.favsList.map( el => el.name)
-  if (!favsList.includes(newFav)) {
+  const favsList = getState().geek.favsList.map( el => el.name.toLowerCase())
+  console.log('newFav ', newFav === '')
+  if (!favsList.includes(newFav) && newFav !== '') {
     axios.post('/api/addTopics/', {userID, newFav})
       .then((res) => {
-        if(res.status === 200){
-          console.log('Fav added')
+        if (res.data.failed) {
+          window.alert(`${newFav} doesn't exist!`)
           dispatch({
             type: types.ADD_FAV,
-          payload: {message: res.message, favsList: res.favsList, eventsList: res.eventsList}
           })
-        } // WHAT HAPPENS IF WE CAN'T FIND THE PERFORMER?
+        } else {
+          window.alert(`${newFav} added!`)
+          console.log('line 69', res.data.newFav)
+          dispatch({
+            type: types.ADD_FAV,
+            payload: {newFav: res.data.newFav, eventsList: res.data.eventsList}
+          }) 
+        }
       })
-      .catch(console.error)
+      .catch(err => {
+        console.log(err);
+      })
     } else {
+      window.alert(`You already like ${newFav}!`)
       dispatch({
         type: types.ADD_FAV,
-        payload: {message: `You already like ${newFav}!`}
+        payload: {}
       })
     }
 };
 
- export const BUY_TIX = (url) => (dispatch, getState) => {
-   //MAKE REDIRECT REQUEST TO URL
-  };
-   
 //SYNC ACTIONS
+export const LOG_OUT = () => ({
+    type: types.LOG_OUT
+})
+
 export const HANDLE_CHANGE = (label, value) => ({
   type: types.HANDLE_CHANGE,
   payload: {label, value}
@@ -96,3 +95,11 @@ export const HANDLE_CHANGE = (label, value) => ({
  export const RETURN_HOME = () => ({
    type: types.RETURN_HOME,
  })
+
+ export const RETURN_TO_LOGIN = () => ({
+  type: types.RETURN_TO_LOGIN,
+})
+
+export const SORT = () => ({
+  type: types.SORT
+})

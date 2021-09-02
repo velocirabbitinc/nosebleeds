@@ -16,22 +16,20 @@ mongoose.connect(MONGO_URI, {
   .catch(err => console.log(err));
 
 const Schema = mongoose.Schema;
-
-
+  // facebookEmail: String,
+  // facebookImage: String,
+  // facebookName: String,
+  // accessToken: String,
+  // refreshToken: String,
 const UserSchema = new Schema({
-  facebookEmail: String,
-  facebookImage: String,
-  facebookName: String,
   username: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  accessToken: String,
-  refreshToken: String,
   likedList:[{
-    typeThing: {type: String, unique: true},
-    name: {type: String, unique: true},
-    image:{type: String, unique: true},
-    id: {type: Number, unique: true}
-  }]
+    typeThing:String,
+    name: String,
+    image:String,
+    id:Number,
+  }],
 });
 
 

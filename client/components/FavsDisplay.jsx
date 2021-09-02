@@ -4,11 +4,19 @@ import Favs from './Favs.jsx';
 const FavsDisplay = props => {
   const newFavsList = [];
   for (let i = 0; i < props.favsList.length; i += 1) {
-    newFavsList.push(<Favs />)
+    const fav = props.favsList[i];
+    newFavsList.push(
+      <Favs 
+        key={`${i}th fav`}
+        typeThing={fav.typeThing}
+        name={fav.name}
+        image={fav.image}
+        id={fav.id}
+      />)
   }
 
   return (
-    <div>
+    <div className="favsDisplay">
       {newFavsList}
     </div>
   )

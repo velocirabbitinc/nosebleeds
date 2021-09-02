@@ -20,6 +20,11 @@ configure({ adapter: new Adapter() });
  * test: does the search bar component render
  * test: does adding a FavoriteArtist/etc render a new FavoriteArtist card
  * test: does clicking on artist/event create a ticket/price card
+ * 
+ * 
+ * 
+ * describe('React tests', () => {
+ *  describe()})
  */
 
 describe('React unit tests', () => {
